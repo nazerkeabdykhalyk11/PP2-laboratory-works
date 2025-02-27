@@ -1,8 +1,15 @@
-def count_case_letters(s):
-    upper_case = sum(1 for char in s if char.isupper())
-    lower_case = sum(1 for char in s if char.islower())
-    return upper_case, lower_case
+def count_letters(letter):
+    upper=0
+    lower=0
+    for i in letter:
+        if i>="A" and i<="Z":
+            upper+=1
+        elif i>="a" and i<="z":
+            lower+=1
+    print("sum upper case:", upper)
+    print("sum lower case:", lower)
+            
+        
 
-input_string = "Hello World"
-upper, lower = count_case_letters(input_string)
-print(f"Uppercase letters: {upper}, Lowercase letters: {lower}")
+sentence=str(input("enter sentence:"))
+count_letters(sentence)

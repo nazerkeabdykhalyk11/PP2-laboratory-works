@@ -1,5 +1,4 @@
-def all_true(tup):
-    return all(tup)
+numbers_input = input("Enter numbers separated by space: ")  
+my_tuple = tuple(map(int, numbers_input.split()))  
 
-input_tuple = (1, True, "hello")
-print(all_true(input_tuple))
+print(all(my_tuple))

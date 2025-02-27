@@ -1,7 +1,7 @@
 def is_palindrome(s):
     return s == s[::-1]
 
-input_string = "madam"
+input_string = str(input("Enter sentence: "))
 if is_palindrome(input_string):
     print(f"{input_string} is a palindrome")
 else:
