@@ -10,5 +10,8 @@ def list_contents(path):
     print("\nAll contents:")
     print(os.listdir(path))
 
+
+#os.walk()
+
 path = input("Enter the path: ")
 list_contents(path)

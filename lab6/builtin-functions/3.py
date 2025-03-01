@@ -1,5 +1,5 @@
 def is_palindrome(s):
-    return s == s[::-1]
+    return s == ''.join(reversed(s))
 
 input_string = str(input("Enter sentence: "))
 if is_palindrome(input_string):
