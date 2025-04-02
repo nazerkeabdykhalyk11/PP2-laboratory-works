@@ -11,9 +11,9 @@ clock = pygame.time.Clock()
 pygame.display.set_caption("Mickey's clock")
 
 # внесение картинок в окно
-leftarm = pygame.image.load("images/leftarm.png")
-rightarm = pygame.image.load("images/rightarm.png")
-mainclock = pygame.transform.scale(pygame.image.load("images/clock.png"), (800, 600))
+leftarm = pygame.image.load("lab7/images/leftarm.png")
+rightarm = pygame.image.load("lab7/images/rightarm.png")
+mainclock = pygame.transform.scale(pygame.image.load("lab7/images/clock.png"), (800, 600))
 
 done = False
 

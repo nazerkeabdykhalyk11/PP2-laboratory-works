@@ -19,7 +19,7 @@ pygame.display.set_caption("Playlist")
 clock = pygame.time.Clock()
 
 # загружаем фон
-background = pygame.image.load(os.path.join("images", "background.png"))
+background = pygame.image.load(os.path.join("lab7", "images", "background.png"))
 
 # создаем область для кнопок, задаем цвет (белый)
 bg = pygame.Surface((500, 170))
@@ -29,10 +29,10 @@ bg.fill((255, 255, 255))
 font2 = pygame.font.SysFont(None, 20)
 
 # загружаем кнопки
-playb = pygame.image.load(os.path.join("images", "play.png"))
-pausb = pygame.image.load(os.path.join("images", "pause.png"))
-nextb = pygame.image.load(os.path.join("images", "next.png"))
-prevb = pygame.image.load(os.path.join("images", "back.png"))
+playb = pygame.image.load(os.path.join("lab7", "images", "play.png"))
+pausb = pygame.image.load(os.path.join("lab7", "images", "pause.png"))
+nextb = pygame.image.load(os.path.join("lab7", "images", "next.png"))
+prevb = pygame.image.load(os.path.join("lab7", "images", "back.png"))
 
 index = 0
 aplay = False
