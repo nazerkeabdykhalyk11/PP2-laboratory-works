@@ -1,4 +1,5 @@
 import psycopg2
+import csv
 
 conn = psycopg2.connect(
     dbname="phonebook",
@@ -8,6 +9,34 @@ conn = psycopg2.connect(
 )
 
 cur = conn.cursor()
+
+def insert_from_csv(file_path):
+    try:
+        with open(file_path, 'r') as file:
+            reader = csv.reader(file)
+            next(reader)  # Пропустить заголовки
+            for row in reader:
+                if len(row) == 4:  # Проверка, что строка содержит ровно 4 элемента
+                    cur.execute("""
+                        INSERT INTO phonebook (first_name, last_name, phone, email)
+                        VALUES (%s, %s, %s, %s)
+                        ON CONFLICT (phone) DO NOTHING
+                    """, (row[0], row[1], row[2], row[3]))
+            conn.commit()
+        print("Data loaded from CSV!")
+    except Exception as e:
+        print(f"Error loading data from CSV: {e}")
+
+def filter_contacts():
+    keyword = input("Enter name or phone to search: ")
+    cur.execute("SELECT * FROM phonebook WHERE name ILIKE %s OR phone ILIKE %s", (f"%{keyword}%", f"%{keyword}%"))
+    results = cur.fetchall()
+    if results:
+        for row in results:
+            print(row)
+    else:
+        print("No matching contacts found.")
+
 
 def add_user():
     name = input("Enter name: ")
@@ -33,7 +62,7 @@ def delete_user():
     conn.commit()
 
 while True:
-    print("\n1. Add contact\n2. Show all\n3. Update\n4. Delete\n5. Exit")
+    print("\n1. Add contact\n2. Show all\n3. Update\n4. Delete\n5. Insert from CSV\n6. Filter\n7. Exit")
     choice = input("Choose: ")
     if choice == '1':
         add_user()
@@ -44,9 +73,14 @@ while True:
     elif choice == '4':
         delete_user()
     elif choice == '5':
+        insert_from_csv()
+    elif choice == '6':
+        filter_contacts()
+    elif choice == '7':
         break
     else:
         print("Invalid choice!")
+
 
 cur.close()
 conn.close()
