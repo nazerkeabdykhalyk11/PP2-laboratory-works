@@ -20,7 +20,9 @@ def insert_or_update_user():
     name = input("Enter first name: ")
     surname = input("Enter last name: ")
     phone = input("Enter phone: ")
-    cur.execute("CALL insert_or_update_user(%s, %s, %s)", (name, surname, phone))
+    email = input("Enter email: ")
+    
+    cur.execute("CALL insert_or_update_user(%s, %s, %s, %s)", (name, surname, phone, email))
     conn.commit()
     print("User inserted or updated.")
 
@@ -33,7 +35,8 @@ def load_from_csv(file_path):
                 {
                     "name": row.get('first_name'),
                     "surname": row.get('last_name'),
-                    "phone": str(row.get('phone')).strip()
+                    "phone": str(row.get('phone')).strip(),
+                    "email": row.get('email')  # 💥 добавили email
                 }
                 for row in reader
                 if row.get('first_name') and row.get('last_name') and row.get('phone')
@@ -49,6 +52,7 @@ def load_from_csv(file_path):
 
     except Exception as e:
         print("Error loading from CSV:", e)
+
 
 
 
