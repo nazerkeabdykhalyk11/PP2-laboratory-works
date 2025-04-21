@@ -36,7 +36,7 @@ def load_from_csv(file_path):
                     "name": row.get('first_name'),
                     "surname": row.get('last_name'),
                     "phone": str(row.get('phone')).strip(),
-                    "email": row.get('email')  # 💥 добавили email
+                    "email": row.get('email')
                 }
                 for row in reader
                 if row.get('first_name') and row.get('last_name') and row.get('phone')
