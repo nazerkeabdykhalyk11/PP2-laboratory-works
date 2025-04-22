@@ -1,13 +1,13 @@
 import pygame
 import random
 import sys
-import psycopg2  # ← добавили PostgreSQL
+import psycopg2
 
 # PostgreSQL setup
 conn = psycopg2.connect(
-    dbname="snake game",  # или postgres, если ты в ней работаешь
+    dbname="snake game",
     user="postgres",
-    password="erketaika11",  # ← замени на свой
+    password="erketaika11",
     host="localhost"
 )
 cur = conn.cursor()
@@ -114,6 +114,7 @@ while running:
         direction = 'RIGHT'
     elif keys[pygame.K_p]:  # P = Pause and Save
         cur.execute("INSERT INTO user_score (user_id, score) VALUES (%s, %s)", (user_id, score))
+        cur.execute("UPDATE users SET level = %s WHERE id = %s", (level, user_id))
         conn.commit()
         print("Game paused & score saved!")
         running = False
@@ -154,6 +155,7 @@ while running:
     if check_collision():
         print("Game Over!")
         cur.execute("INSERT INTO user_score (user_id, score) VALUES (%s, %s)", (user_id, score))
+        cur.execute("UPDATE users SET level = %s WHERE id = %s", (level, user_id))
         conn.commit()
         running = False
 
