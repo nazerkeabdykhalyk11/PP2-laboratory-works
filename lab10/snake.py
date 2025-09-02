@@ -7,7 +7,7 @@ import psycopg2
 conn = psycopg2.connect(
     dbname="snake game",
     user="postgres",
-    password="erketaika11",
+    password="11447700",
     host="localhost"
 )
 cur = conn.cursor()

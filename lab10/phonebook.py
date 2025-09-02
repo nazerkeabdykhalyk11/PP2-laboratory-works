@@ -5,7 +5,7 @@ import csv
 conn = psycopg2.connect(
     dbname="phonebook",
     user="postgres",
-    password="erketaika11",
+    password="11447700",
     host="localhost"
 )
 
